@@ -48,20 +48,20 @@ class Mult {
             let localMultiplier = Math.abs(this.multiplier);
             let localMultiplicand = Math.abs(this.multiplicand);
 
-                for (let i = 0; i < localMultiplier; i += 1) {
-                    /*******************
-                     * Iterative Case: 
-                     *******************/
-                        product += localMultiplicand;
-                        if (sign < 0) {
-                            this.product = -product;
-                        } else if (sign === 0) {
-                            this.product = 0;
-                        } else if (sign > 0) {
-                            this.product = product;
-                        }
-                }
-                return this.product;                            
+            /*******************
+             * Iterative Case: 
+             *******************/
+            for (let i = 0; i < localMultiplier; i += 1) {
+                    product += localMultiplicand;
+                    if (sign < 0) {
+                        this.product = -product;
+                    } else if (sign === 0) {
+                        this.product = 0;
+                    } else if (sign > 0) {
+                        this.product = product;
+                    }
+            }
+            return this.product;                            
         } else {
             throw new Error('Input must be an Integer');
         } 
