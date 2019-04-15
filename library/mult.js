@@ -37,7 +37,6 @@ class Mult {
         if (Number.isInteger(multiplier) && Number.isInteger(multiplicand)) {
 
             // Initialize Local Varibles
-            const productArray = [];
             let product = 0;
             let sign = productSign(multiplier, multiplicand);
 
@@ -49,7 +48,7 @@ class Mult {
             let localMultiplier = Math.abs(this.multiplier);
             let localMultiplicand = Math.abs(this.multiplicand);
 
-                for (let i = 0; i <= localMultiplier; i += 1) {
+                for (let i = 0; i < localMultiplier; i += 1) {
                     let arrayElement;
                     /***************
                      * Base Case: 
@@ -57,8 +56,7 @@ class Mult {
                     if (localMultiplier === 0) {
                         product = 0;
                         this.product = product;
-                        productArray.push(this.product);
-                        return productArray[localMultiplier];
+                        return this.product;
                     } 
                     /*******************
                      * Iterative Case: 
@@ -71,10 +69,8 @@ class Mult {
                         } else if (sign > 0) {
                             this.product = product;
                         }
-                        productArray.push(this.product);
                 }
-                // Array Element localMultiplier-1 used to adjust for array offset  
-                return productArray[localMultiplier-1];                             
+                return this.product;                            
         } else {
             throw new Error('Input must be an Integer');
         } 
