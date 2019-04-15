@@ -4,8 +4,8 @@ function productSign(multiplier, multiplicand) {
     if (multiplier === 0 || multiplicand === 0) {
         sign = 0;
     } else if (multiplier < 0 && multiplicand < 0 
-        || multiplier > 0 && multiplicand > 0) {
-            sign = 1;
+            || multiplier > 0 && multiplicand > 0) {
+                sign = 1;
     } else if (multiplier < 0 || multiplicand < 0) {
         sign = -1;
     }
