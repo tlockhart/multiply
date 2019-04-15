@@ -3,12 +3,17 @@
 //Step 3: Return the product
 //Step 4: Add conditions for edge case factors (0, 1, negative numbers)
 //Step 5: Handle none integer input?
+
+const productSign = require('./productSign');
+
 class Mult {
+
     constructor() {
         this._multiplier = 0;
         this._multiplicand = 0;
         this._product = 0;
     }
+
     get multiplier() {
         return this._multiplier;
     }
@@ -26,29 +31,15 @@ class Mult {
     }
     set product(value) {
         this._product = value;
-    }
-    
-    //Version 2: Interative Solution: (Linear Runtime)
-    productSign(multiplier, multiplicand) {
-        let sign = 1;
-        if((multiplier === 0) || (multiplicand === 0)) {
-            sign = 0;
-        }
-        else if((multiplier < 0) && (multiplicand < 0) || (multiplier > 0) && (multiplicand > 0)) {
-            sign = 1;
-        }
-        else if ((multiplier < 0) || (multiplicand < 0)) {
-            sign = -1;
-        }
-        return sign;
     } 
+
     multiply(multiplier, multiplicand) {
         if (Number.isInteger(multiplier) && Number.isInteger(multiplicand)) {
 
             // Initialize Local Varibles
             const productArray = [];
             let product = 0;
-            let sign = this.productSign(multiplier, multiplicand);
+            let sign = productSign(multiplier, multiplicand);
 
             // Set Instance Variables
             this.multiplier = multiplier;
