@@ -4,16 +4,22 @@
 //Step 4: Add conditions for edge case factors (0, 1, negative numbers)
 //Step 5: Handle none integer input?
 class Mult {
-    constructor(multiplier, multiplicand) {
-        this._multiplier = multiplier;
-        this._multiplicand = multiplicand;
+    constructor() {
+        this._multiplier = 0;
+        this._multiplicand = 0;
         this._product = 0;
     }
     get multiplier() {
         return this._multiplier;
     }
+    set multiplier(value) {
+        this._multiplier = value;
+    }
     get multiplicand() {
         return this._multiplicand;
+    }
+    set multiplicand(value) {
+        this._multiplicand = value;
     }
     get product() {
         return this._product;
@@ -21,30 +27,67 @@ class Mult {
     set product(value) {
         this._product = value;
     }
+    
+    //Version 2: Interative Solution: (Linear Runtime)
     productSign(multiplier, multiplicand) {
-        let sign;
-        (multiplier < 0)||(multiplicand < 0)? sign = -1 :'' ;
-        (multiplier === 0) || (multiplicand === 0)? sign = 0 :'' ;
-        (multiplier < 0) && (multiplicand < 0) && (sign = 1);
-        (multiplier > 0) && (multiplicand > 0) && (sign = 1);
+        let sign = 1;
+        if((multiplier === 0) || (multiplicand === 0)) {
+            sign = 0;
+        }
+        else if((multiplier < 0) && (multiplicand < 0) || (multiplier > 0) && (multiplicand > 0)) {
+            sign = 1;
+        }
+        else if ((multiplier < 0) || (multiplicand < 0)) {
+            sign = -1;
+        }
         return sign;
     } 
-    multiply() {
-        let multiplier = this.multiplier;
-        let multiplicand = this.multiplicand;
-        let product = 0;
-        let sign = this.productSign(multiplier, multiplicand);
-            for(let i = 0; i < Math.abs(multiplier); i += 1) {
-                product += Math.abs(multiplicand);
-            }//for
-        // debugger;
-        this.product = product * sign;
-        return this.product;
-    }//multiply
+    multiply(multiplier, multiplicand) {
+        if (Number.isInteger(multiplier) && Number.isInteger(multiplicand)) {
 
+            // Initialize Local Varibles
+            const productArray = [];
+            let product = 0;
+            let sign = this.productSign(multiplier, multiplicand);
+
+            // Set Instance Variables
+            this.multiplier = multiplier;
+            this.multiplicand = multiplicand;
+
+            // Set Local Variables
+            let localMultiplier = Math.abs(this.multiplier);
+            let localMultiplicand = Math.abs(this.multiplicand);
+
+                for (let i = 0; i <= localMultiplier; i += 1) {
+                    let arrayElement;
+                    /***************
+                     * Base Case: 
+                     ***************/
+                    if (localMultiplier === 0) {
+                        product = 0;
+                        this.product = product;
+                        productArray.push(this.product);
+                        return productArray[localMultiplier];
+                    } 
+                    /*******************
+                     * Iterative Case: 
+                     *******************/
+                        product += localMultiplicand;
+                        if (sign < 0) {
+                            this.product = -product;
+                        } else if (sign === 0) {
+                            this.product = 0;
+                        } else if (sign > 0) {
+                            this.product = product;
+                        }
+                        productArray.push(this.product);
+                }
+                // Array Element localMultiplier-1 used to adjust for array offset  
+                return productArray[localMultiplier-1];                             
+        } else {
+            throw new Error('Input must be an Integer');
+        } 
+    }
 }//Mult
-
-// let myMult4 = new Mult(-3, 4);
-// console.log(myMult4.multiply());
 
 module.exports = Mult;
