@@ -49,15 +49,6 @@ class Mult {
             let localMultiplicand = Math.abs(this.multiplicand);
 
                 for (let i = 0; i < localMultiplier; i += 1) {
-                    let arrayElement;
-                    /***************
-                     * Base Case: 
-                     ***************/
-                    if (localMultiplier === 0) {
-                        product = 0;
-                        this.product = product;
-                        return this.product;
-                    } 
                     /*******************
                      * Iterative Case: 
                      *******************/
