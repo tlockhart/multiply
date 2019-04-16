@@ -13,8 +13,9 @@ class Mult {
         this._multiplicand = 0;
         this._product = 0;
         
-        //Bind the slowMultiply method to this object
-        this.slowMultiply = this.slowMultiply.bind(this);
+        // Bind the multiply method to this object
+        // this.slowMultiply = this.slowMultiply.bind(this);
+        this.multiply = this.multiply.bind(this);
     }
 
     get multiplier() {
@@ -36,7 +37,7 @@ class Mult {
         this._product = value;
     }
     
-    //Version 4: Memoized Recursive Approach
+    // Version 4: Memoized Recursive Approach
     memoize(fn) {
 
         // cache object stores args and results from previous calls to the anonymouse function
@@ -62,7 +63,8 @@ class Mult {
         };
     }
 
-    slowMultiply(multiplier, multiplicand) {
+    // slowMultiply(multiplier, multiplicand) {
+        multiply(multiplier, multiplicand) {
         if (Number.isInteger(multiplier) && Number.isInteger(multiplicand)) {
             
             // Initialize Local Varibles
@@ -102,7 +104,8 @@ class Mult {
                 // If the multiplier is negative, you must add 1 to make it converge.
                 // If the multiplier is positive, you must subtract 1 to make it converge.
                 this.product = this.product 
-                                + this.slowMultiply(multiplier < 0? 
+                                // + this.slowMultiply(multiplier < 0? 
+                                + this.multiply(multiplier < 0?
                                                 multiplier + 1: 
                                                 multiplier - 1, 
                                                 multiplicand);
@@ -113,21 +116,6 @@ class Mult {
             throw new Error('Input must be an Integer');
         }
     }
-}//mult
-
-// const myMult1 = new Mult();
-// console.log("0 , 1", myMult1.multiply(0, 1));
-
-// const myMult2 = new Mult();
-// console.log("0, 4", myMult2.multiply(0, 4));
-
-// const myMult3 = new Mult();
-// console.log("2, 4", myMult3.multiply(2, 4));
-
-// const myMult4 = new Mult();
-// console.log("-2, -4", myMult4.multiply(-2, -4));
-
-// const myMult5 = new Mult();
-// console.log("3, -4", myMult5.multiply(3, -4));
+} // Mult
 
 module.exports = Mult;

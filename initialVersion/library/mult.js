@@ -3,12 +3,15 @@
 //Step 3: Return the product
 //Step 4: Add conditions for edge case factors (0, 1, negative numbers)
 //Step 5: Handle none integer input?
+
 class Mult {
+
     constructor() {
         this._multiplier = 0;
         this._multiplicand = 0;
         this._product = 0;
     }
+
     get multiplier() {
         return this._multiplier;
     }
@@ -28,7 +31,7 @@ class Mult {
         this._product = value;
     }
     
-    //Version 1: Iterative Solution: (Liner Runtime)
+    // Version 1: Iterative Solution: (Liner Runtime)
     productSign(multiplier, multiplicand) {
         let sign;
         (multiplier < 0)||(multiplicand < 0)? sign = -1 :'' ;

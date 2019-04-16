@@ -66,6 +66,6 @@ class Mult {
             throw new Error('Input must be an Integer');
         } 
     }
-}//Mult
+} // Mult
 
 module.exports = Mult;
