@@ -1,5 +1,5 @@
 //Step 1: Store the multiplier and the multiplicand
-//Step 2: Add the multiplicand to itself, the number of times indicated by the multiplicand
+//Step 2: Add the multiplicand to itself, the number of times indicated by the multiplier
 //Step 3: Return the product
 //Step 4: Add conditions for edge case factors (0, 1, negative numbers)
 //Step 5: Handle none integer input?
