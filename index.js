@@ -1,4 +1,4 @@
-const Mult = require('./library/mult');
+const Mult = require('./library/Mult');
 
 const myMult1 = new Mult();
 console.log('multiply(0 , 1) = ', myMult1.multiply(0, 1));

@@ -12,6 +12,9 @@ class Mult {
         this._multiplier = 0;
         this._multiplicand = 0;
         this._product = 0;
+        
+        //Bind the slowMultiply method to this object
+        this.slowMultiply = this.slowMultiply.bind(this);
     }
 
     get multiplier() {
@@ -33,22 +36,33 @@ class Mult {
         this._product = value;
     }
     
-    //Version 3: Recursive Approach
-    productSign(multiplier, multiplicand) {
-        let sign = 1;
-        if (multiplier === 0 || multiplicand === 0) {
-            sign = 0;
-        }
-        else if (multiplier < 0 && multiplicand < 0 
-              || multiplier > 0 && multiplicand > 0) {
-                    sign = 1;
-        }
-        else if (multiplier < 0 || multiplicand < 0) {
-            sign = -1;
-        }
-        return sign;
-    } 
-    multiply(multiplier, multiplicand) {
+    //Version 4: Memoized Recursive Approach
+    memoize(fn) {
+
+        // cache object stores args and results from previous calls to the anonymouse function
+        const cache = {};
+
+        // Anonymous function representing slowMuliply method.  
+        // Takes the args passed and assigns them to the args array
+        return function(...args) {
+
+            // If the anonymous function has received an arg, 
+            // then just return the value from cache object
+            if (cache[args]) {
+                return cache[args];
+            }
+    
+            // If the anonymous function has not received an arg, 
+            // then store it in the cache object
+            const result = fn.apply(this, args);
+            cache[args] = result;
+            
+            // Return results
+            return result;
+        };
+    }
+
+    slowMultiply(multiplier, multiplicand) {
         if (Number.isInteger(multiplier) && Number.isInteger(multiplicand)) {
             
             // Initialize Local Varibles
@@ -88,17 +102,18 @@ class Mult {
                 // If the multiplier is negative, you must add 1 to make it converge.
                 // If the multiplier is positive, you must subtract 1 to make it converge.
                 this.product = this.product 
-                                + this.multiply(multiplier < 0? 
+                                + this.slowMultiply(multiplier < 0? 
                                                 multiplier + 1: 
                                                 multiplier - 1, 
                                                 multiplicand);
                 return this.product;
             }                      
-        } else {
+        } 
+         else {
             throw new Error('Input must be an Integer');
         }
     }
-} // Mult
+}//mult
 
 // const myMult1 = new Mult();
 // console.log("0 , 1", myMult1.multiply(0, 1));

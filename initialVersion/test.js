@@ -1,4 +1,4 @@
-const Mult = require('./library/mult');
+const Mult = require('./library/Mult');
 test('Mult class exists', () => {
     expect(Mult).toBeDefined();
   });
