@@ -1,7 +1,7 @@
 const Mult = require('./library/Mult');
 
 const myMult1 = new Mult();
-console.log('multiply(0 , 1) = ', myMult1.multiply(0, 1));
+console.log('multiply(0, 1) = ', myMult1.multiply(0, 1));
 
 const myMult2 = new Mult();
 console.log('multiply(0, 4) = ', myMult2.multiply(0, 4));

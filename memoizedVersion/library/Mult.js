@@ -97,7 +97,7 @@ class Mult {
                     product = -localMultiplicand;
                     this.product = product;
                 }  else if (sign > 0) {
-                    product = localMultiplicand
+                    product = localMultiplicand;
                     this.product = product;
                 }
                 // NOTE: CONVERGENCE CRITERIA 
