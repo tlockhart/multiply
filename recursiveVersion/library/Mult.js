@@ -34,20 +34,6 @@ class Mult {
     }
     
     //Version 3: Recursive Approach
-    productSign(multiplier, multiplicand) {
-        let sign = 1;
-        if (multiplier === 0 || multiplicand === 0) {
-            sign = 0;
-        }
-        else if (multiplier < 0 && multiplicand < 0 
-              || multiplier > 0 && multiplicand > 0) {
-                    sign = 1;
-        }
-        else if (multiplier < 0 || multiplicand < 0) {
-            sign = -1;
-        }
-        return sign;
-    } 
     multiply(multiplier, multiplicand) {
         if (Number.isInteger(multiplier) && Number.isInteger(multiplicand)) {
             
